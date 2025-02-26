@@ -48,7 +48,8 @@ class FadingTextAnimation extends StatefulWidget {
 
 class _FadingTextAnimationState extends State<FadingTextAnimation> {
   bool _isVisible = true;
-  Color _textColor = Colors.blue; // Default text color
+  Color _textColor = Colors.blue;
+  bool _showFrame = false;
 
   void toggleVisibility() {
     setState(() => _isVisible = !_isVisible);
@@ -85,15 +86,45 @@ class _FadingTextAnimationState extends State<FadingTextAnimation> {
               icon: Icon(Icons.brightness_6), onPressed: widget.onToggleTheme),
         ],
       ),
-      body: Center(
-        child: AnimatedOpacity(
-          opacity: _isVisible ? 1.0 : 0.0,
-          duration: Duration(seconds: 1),
-          child: Text(
-            'Hello, Flutter!',
-            style: TextStyle(fontSize: 24, color: _textColor),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: AnimatedOpacity(
+              opacity: _isVisible ? 1.0 : 0.0,
+              duration: Duration(seconds: 1),
+              child: Text(
+                'Hello, Flutter!',
+                style: TextStyle(fontSize: 24, color: _textColor),
+              ),
+            ),
           ),
-        ),
+          SizedBox(height: 20),
+          Container(
+            decoration: BoxDecoration(
+              border:
+                  _showFrame ? Border.all(color: Colors.blue, width: 4) : null,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.asset(
+                'assets/cool_cat.png',
+                width: 150,
+                height: 150,
+              ),
+            ),
+          ),
+          SwitchListTile(
+            title: Text("Show Frame"),
+            value: _showFrame,
+            onChanged: (bool value) {
+              setState(() {
+                _showFrame = value;
+              });
+            },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: toggleVisibility,
