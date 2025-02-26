@@ -1,0 +1,2 @@
+/Users/hasinrahman/Documents/mad/ACT7MAD/android/app/.cxx/Debug/5p3wy4si/x86/CMakeFiles/edit_cache.dir
+/Users/hasinrahman/Documents/mad/ACT7MAD/android/app/.cxx/Debug/5p3wy4si/x86/CMakeFiles/rebuild_cache.dir
